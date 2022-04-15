@@ -34,10 +34,11 @@ def pingHost():
             host="10.0.0.1"
 
             response = os.system("ping -c 1 " + host)
+            retval = host +  'is up!'
             if response == 0:
-                print (host, 'is up!')
+                retval = host +  'is up!'
             else:
-                print (host, 'is down!')
+                retval = host +  'is down!'
 
             #if platform.system().lower()=='windows':
             #    param = '-n'
@@ -53,7 +54,7 @@ def pingHost():
                 ##retval=True
         except Exception as ex:
             print ("Error: ping exception = ", ex)
-        return "up"
+        return retval
 
 
 @app.route('/postmsg', methods = ['POST'])
