@@ -31,30 +31,18 @@ def restartVM():
 @app.route('/ping')
 def pingHost():
         try:
+            timeout=1
             host="10.0.0.1"
-
-            response = os.system("ping -c 1 " + host)
-            retval = host +  'is up!'
-            if response == 0:
-                retval = host +  'is up!'
+            if platform.system() == "Windows":
+                command="ping "+host+" -n 1 -w "+str(timeout*1000)
             else:
-                retval = host +  'is down!'
+                command="ping -i "+str(timeout)+" -c 1 " + host
 
-            #if platform.system().lower()=='windows':
-            #    param = '-n'
-            #else:
-            #    param='-c'
-
-            #param = '-n' if platform.system().lower()=='windows' else '-c'
-
-            # Building the command. 
-            ##command = ['ping', '-c', '1', host]
-            ##retval=False
-            ##if subprocess.call(command) == 0:
-                ##retval=True
+            #response = os.system("ping -c 1 " + host)
+            response = os.system(command)
         except Exception as ex:
             print ("Error: ping exception = ", ex)
-        return retval
+        return response
 
 
 @app.route('/postmsg', methods = ['POST'])
