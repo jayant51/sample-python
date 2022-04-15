@@ -14,9 +14,9 @@ def dfExec():
 @app.route('/restart')
 def restartVM():
     sshclnt = utils.getSSHClient()
-	s = sshclnt.get_transport().open_session()
-	paramiko.agent.AgentRequestHandler(s)
-	sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
+    s = sshclnt.get_transport().open_session()
+    paramiko.agent.AgentRequestHandler(s)
+    sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
     return "Message : Sent Restart remote server : ***REMOVED***!"  
 
 
