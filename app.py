@@ -4,6 +4,7 @@ import select
 import paramiko
 import time
 import smtplib
+import platform  
 from flask import Flask, jsonify, request
 from waitress import serve
 
@@ -25,7 +26,47 @@ def restartVM():
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
     return "Message : Sent Restart remote server : ***REMOVED***!"  
 
+@app.route('/ping')
+def pingHost():
+        host="10.0.0.1"
+        if platform.system().lower()=='windows':
+            param = '-n'
+        else:
+            param='-c'
 
+	    #param = '-n' if platform.system().lower()=='windows' else '-c'
+
+		# Building the command. 
+        command = ['ping', param, '1', host]
+
+        return subprocess.call(command) == 0
+
+
+
+@app.route('/postmsg')
+def post_msg():
+	data = request.get_json()
+	toaddrs = data.get("emailid")
+	email_msg = data.get("msg")
+	email_subj = data.get("subject")
+	self.send_email(toaddrs, email_subj, email_msg)
+	return "message : Completed Post"
+
+def send_email(self, toaddrs, email_subj, email_msg):
+	fromaddr = "some.body@ibm.com"
+	#toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
+
+	msg = MIMEText(email_msg)
+	msg['Subject'] = email_subj
+
+	try:
+		server = smtplib.SMTP( ============, 25)
+		server.set_debuglevel(1)
+		server.sendmail(fromaddr, toaddrs, msg.as_string())
+		server.quit()   
+		print ("Successfully sent email")
+	except Exception as ex:
+		print ("Error: unable to send email", ex)
 #-----------------------------------------------------------------------------------------------------------------------
 # Utils class 
 # getSSHClient : Obtains SSHClient to execute command over SSH
