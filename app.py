@@ -12,7 +12,7 @@ def dfExec():
     return "Message : Sent SSH df -H to remote server : ***REMOVED***!"    
 
 @app.route('/restart')
-def dfExec():
+def restartVM():
     return "Message : Sent Restart remote server : ***REMOVED***!"  
 
 
