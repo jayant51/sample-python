@@ -40,8 +40,11 @@ def pingHost():
 
 		# Building the command. 
         command = ['ping', '-c', '1', host]
+        retval=False
+        if subprocess.call(command) == 0:
+            retval=True
 
-        return subprocess.call(command) == 0
+        return retval
 
 
 @app.route('/postmsg', methods = ['POST'])
