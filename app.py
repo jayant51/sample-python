@@ -43,13 +43,14 @@ def pingHost():
         return subprocess.call(command) == 0
 
 
-@app.route('/postmsg')
+@app.route('/postmsg', methods = ['POST'])
 def post_msg():
 	data = request.get_json()
 	toaddrs = data.get("emailid")
 	email_msg = data.get("msg")
 	email_subj = data.get("subject")
 	send_email(toaddrs, email_subj, email_msg)
+    
 	return "message : Completed Post"
 
 def send_email(self, toaddrs, email_subj, email_msg):
