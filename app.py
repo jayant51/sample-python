@@ -28,21 +28,24 @@ def restartVM():
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
     return "Message : Sent Restart remote server : ***REMOVED***!"  
 
-@app.route('/ping')
-def pingHost():
+@app.route('/isVMUp')
+def isvmup():
         try:
             timeout=1
             host="10.0.0.1"
+            retval="True"
             if platform.system() == "Windows":
                 command="ping "+host+" -n 1 -w "+str(timeout*1000)
             else:
                 command="ping -i "+str(timeout)+" -c 1 " + host
-
-            #response = os.system("ping -c 1 " + host)
             response = os.system(command)
+            if response == 0:
+                retval="True"
+            else: 
+                retVal="False"
         except Exception as ex:
             print ("Error: ping exception = ", ex)
-        return response
+        return retval
 
 
 @app.route('/postmsg', methods = ['POST'])
