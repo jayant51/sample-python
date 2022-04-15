@@ -43,6 +43,11 @@ def pingHost():
         return subprocess.call(command) == 0
 
 
+@app.route('/postmsg')
+def post_msg():
+    return "Message : Sent Email !"  
+
+''''
 
 @app.route('/postmsg')
 def post_msg():
@@ -68,6 +73,8 @@ def send_email(self, toaddrs, email_subj, email_msg):
 		print ("Successfully sent email")
 	except Exception as ex:
 		print ("Error: unable to send email", ex)
+
+''''        
 #-----------------------------------------------------------------------------------------------------------------------
 # Utils class 
 # getSSHClient : Obtains SSHClient to execute command over SSH

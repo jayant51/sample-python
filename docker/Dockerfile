@@ -9,7 +9,7 @@
 #
 # docker run -i --rm -p 8081:8081 python/sample-basic
 ####
-FROM python:slim
+FROM python
 
 WORKDIR /projects
 
