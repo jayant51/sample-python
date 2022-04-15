@@ -5,6 +5,7 @@ import paramiko
 import time
 import smtplib
 import platform  
+import subprocess 
 from flask import Flask, jsonify, request
 from waitress import serve
 
@@ -49,7 +50,7 @@ def post_msg():
 	toaddrs = data.get("emailid")
 	email_msg = data.get("msg")
 	email_subj = data.get("subject")
-	self.send_email(toaddrs, email_subj, email_msg)
+	send_email(toaddrs, email_subj, email_msg)
 	return "message : Completed Post"
 
 def send_email(self, toaddrs, email_subj, email_msg):
