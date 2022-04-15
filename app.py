@@ -47,6 +47,12 @@ def isvmup():
             print ("Error: ping exception = ", ex)
         return retval
 
+@app.route('/isVMDown')
+def isvmdown():
+    if isvmup() == "True":
+        return "False"
+    else:
+        return "True"
 
 @app.route('/postmsg', methods = ['POST'])
 def post_msg():
