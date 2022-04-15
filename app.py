@@ -53,7 +53,7 @@ def post_msg():
     
 	return "message : Completed Post"
 
-def send_email(self, toaddrs, email_subj, email_msg):
+def send_email( toaddrs, email_subj, email_msg):
 	fromaddr = "some.body@ibm.com"
 	#toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
 
