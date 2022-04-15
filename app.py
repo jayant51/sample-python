@@ -31,15 +31,15 @@ def restartVM():
 @app.route('/ping')
 def pingHost():
         host="10.0.0.1"
-        if platform.system().lower()=='windows':
-            param = '-n'
-        else:
-            param='-c'
+        #if platform.system().lower()=='windows':
+        #    param = '-n'
+        #else:
+        #    param='-c'
 
 	    #param = '-n' if platform.system().lower()=='windows' else '-c'
 
 		# Building the command. 
-        command = ['ping', param, '1', host]
+        command = ['ping', '-c', '1', host]
 
         return subprocess.call(command) == 0
 
