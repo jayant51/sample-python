@@ -46,36 +46,9 @@ def pingHost():
 @app.route('/postmsg')
 def post_msg():
     return "Message : Sent Email !"  
-
-'''
-
-@app.route('/postmsg')
-def post_msg():
-	data = request.get_json()
-	toaddrs = data.get("emailid")
-	email_msg = data.get("msg")
-	email_subj = data.get("subject")
-	send_email(toaddrs, email_subj, email_msg)
-	return "message : Completed Post"
-
-def send_email(self, toaddrs, email_subj, email_msg):
-	fromaddr = "some.body@ibm.com"
-	#toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
-
-	msg = MIMEText(email_msg)
-	msg['Subject'] = email_subj
-
-	try:
-		server = smtplib.SMTP( ============, 25)
-		server.set_debuglevel(1)
-		server.sendmail(fromaddr, toaddrs, msg.as_string())
-		server.quit()   
-		print ("Successfully sent email")
-	except Exception as ex:
-		print ("Error: unable to send email", ex)
-
-'''   
-#-----------------------------------------------------------------------------------------------------------------------
+    
+    
+    #-----------------------------------------------------------------------------------------------------------------------
 # Utils class 
 # getSSHClient : Obtains SSHClient to execute command over SSH
 # execCommand : function to execute command over SSH, which also closes connection after command execution
