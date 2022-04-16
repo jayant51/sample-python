@@ -87,7 +87,8 @@ def send_email(toaddrs, email_subj, email_msg):
 
     try:
         log = "creating SMTP"
-        server = smtplib.SMTP( ============, 25)
+        #server = smtplib.SMTP( ============, 25)
+        server = smtplib.SMTP('smtp.gmail.com', 587)
         server.set_debuglevel(1)
         log = log + "calling send email"
         server.sendmail(fromaddr, toaddrs, msg.as_string())
