@@ -28,6 +28,9 @@ def restartVM():
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
     return "Message : Sent Restart remote server : ***REMOVED***!"  
 
+
+@app.route('/checkVMStatus')
+@app.route('/verifyVMStatus')
 @app.route('/isVMUp')
 def isvmup():
         try:
@@ -53,6 +56,7 @@ def isvmdown():
         return "False"
     else:
         return "True"
+
 
 @app.route('/postmsg', methods = ['POST'])
 def post_msg():
