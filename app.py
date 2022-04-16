@@ -97,6 +97,7 @@ def send_email(toaddrs, email_subj, email_msg):
         log = log + "Successfully sent email"
     except Exception as ex:
         print("Error: unable to send email", ex)
+        log = log  + "Error: unable to send email" + ex
     return log
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
