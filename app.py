@@ -65,15 +65,12 @@ def isvmdown():
 
 @app.route('/postmsg', methods=['POST'])
 def post_msg():
-    log = "in post msg"
+    log = "in postmsg \n"
     data = request.get_json()
 
     toaddrs = data.get("emailid")
-    log = log + toaddrs
     email_msg = data.get("msg")
-    log = log + email_msg
     email_subj = data.get("subject")
-    log = log + email_subj
     slog = send_email(toaddrs, email_subj, email_msg)
 
     return log + " " + slog + "  message : Completed Send Email"
@@ -82,10 +79,10 @@ def post_msg():
 def send_email(toaddrs, email_subj, email_msg):
     #The mail addresses and password
     sender_address = 'testibmvz@gmail.com'
-    sender_pass = 'password!2E'
+    sender_passcode = '***REMOVED***'
     receiver_address = 'testibmvz@gmail.com'
 
-    mail_content = " Hello,  This is a simple mail. There is only text, no attachments are there The mail is sent using Python SMTP library. Thank You"
+    mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
 
 
     #Setup the MIME
@@ -100,7 +97,6 @@ def send_email(toaddrs, email_subj, email_msg):
     msg['Subject'] = email_subj
 
     try:
-        log = "creating SMTP"
         #server = smtplib.SMTP( ============, 25)
         message = MIMEMultipart()
         message['From'] = sender_address
@@ -111,14 +107,14 @@ def send_email(toaddrs, email_subj, email_msg):
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()  # enable security
         # login with mail_id and password
-        session.login("testibmvz@gmail.com", "***REMOVED***")
+        session.login(sender_address, sender_passcode)
         session.set_debuglevel(1)
         text = message.as_string()
-        log = log + "calling send email"
+        log =  "calling send email"
         session.sendmail(sender_address, receiver_address, text)
-        log = log + "done send email"
+        log = log + "\n done send email"
         session.quit()
-        log = log + "Successfully sent email"
+        log = log + "\n Successfully sent email"
     except Exception as ex:
         print("Error: unable to send email", ex)
         log = log + "Error: unable to send email" + str(ex)
