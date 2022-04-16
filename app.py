@@ -105,7 +105,7 @@ def send_email(toaddrs, email_subj, email_msg):
         message = MIMEMultipart()
         message['From'] = sender_address
         message['To'] = receiver_address
-        message['Subject'] = 'A test mail sent by Python. It has an attachment.'   #The subject line
+        message['Subject'] = 'WfPs Test Email to verify Notifications are working !!!.'   #The subject line
 
         message.attach(MIMEText(mail_content, 'plain'))
         session = smtplib.SMTP('smtp.gmail.com', 587)
