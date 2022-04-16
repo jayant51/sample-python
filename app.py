@@ -64,15 +64,15 @@ def isvmdown():
 
 @app.route('/postmsg', methods=['POST'])
 def post_msg():
-    print("in post msg")
+    log = "in post msg"
     data = request.get_json()
-    print(data)
+    log = log + data
     toaddrs = data.get("emailid")
     email_msg = data.get("msg")
     email_subj = data.get("subject")
     send_email(toaddrs, email_subj, email_msg)
 
-    return "message : Completed Send Email"
+    return log + "  message : Completed Send Email"
 
 
 def send_email(toaddrs, email_subj, email_msg):
