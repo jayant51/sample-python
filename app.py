@@ -64,7 +64,9 @@ def isvmdown():
 
 @app.route('/postmsg', methods=['POST'])
 def post_msg():
+    print("in post msg")
     data = request.get_json()
+    print(data)
     toaddrs = data.get("emailid")
     email_msg = data.get("msg")
     email_subj = data.get("subject")
