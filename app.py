@@ -66,10 +66,13 @@ def isvmdown():
 def post_msg():
     log = "in post msg"
     data = request.get_json()
-    log = log + data
+    
     toaddrs = data.get("emailid")
+    log = log + toaddrs
     email_msg = data.get("msg")
+    log = log + email_msg
     email_subj = data.get("subject")
+    log = log + email_subj
     send_email(toaddrs, email_subj, email_msg)
 
     return log + "  message : Completed Send Email"
