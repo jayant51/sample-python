@@ -76,14 +76,14 @@ def post_msg():
 def send_email(toaddrs, email_subj, email_msg):
     fromaddr = "some.body@ibm.com"
     #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
-    toaddrs = ["some.body@ibm.com"]
+    
 
     msg = MIMEText(email_msg)
     msg['Subject'] = email_subj
 
     try:
         print("creating SMTP")
-        server = smtplib.SMTP( ============, 1025)
+        server = smtplib.SMTP( ============, 25)
         server.set_debuglevel(1)
         print("calling send email")
         server.sendmail(fromaddr, toaddrs, msg.as_string())
