@@ -73,9 +73,9 @@ def post_msg():
     log = log + email_msg
     email_subj = data.get("subject")
     log = log + email_subj
-    send_email(toaddrs, email_subj, email_msg)
+    slog = send_email(toaddrs, email_subj, email_msg)
 
-    return log + "  message : Completed Send Email"
+    return log + " " + slog + "  message : Completed Send Email"
 
 
 def send_email(toaddrs, email_subj, email_msg):
@@ -87,17 +87,17 @@ def send_email(toaddrs, email_subj, email_msg):
     msg['Subject'] = email_subj
 
     try:
-        print("creating SMTP")
+        log = "creating SMTP"
         server = smtplib.SMTP( ============, 25)
         server.set_debuglevel(1)
-        print("calling send email")
+        log = log +  "calling send email"
         server.sendmail(fromaddr, toaddrs, msg.as_string())
-        print("done send email")
+        log = log + "done send email"
         server.quit()
-        print("Successfully sent email")
+        log = log + "Successfully sent email"
     except Exception as ex:
         print("Error: unable to send email", ex)
-
+    return log
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
 # getSSHClient : Obtains SSHClient to execute command over SSH
