@@ -66,7 +66,7 @@ def isvmdown():
 def post_msg():
     log = "in post msg"
     data = request.get_json()
-    
+
     toaddrs = data.get("emailid")
     log = log + toaddrs
     email_msg = data.get("msg")
@@ -81,7 +81,6 @@ def post_msg():
 def send_email(toaddrs, email_subj, email_msg):
     fromaddr = "some.body@ibm.com"
     #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
-    
 
     msg = MIMEText(email_msg)
     msg['Subject'] = email_subj
@@ -90,14 +89,14 @@ def send_email(toaddrs, email_subj, email_msg):
         log = "creating SMTP"
         server = smtplib.SMTP( ============, 25)
         server.set_debuglevel(1)
-        log = log +  "calling send email"
+        log = log + "calling send email"
         server.sendmail(fromaddr, toaddrs, msg.as_string())
         log = log + "done send email"
         server.quit()
         log = log + "Successfully sent email"
     except Exception as ex:
         print("Error: unable to send email", ex)
-        log = log  + "Error: unable to send email" + ex
+        log = log + "Error: unable to send email" + str(ex)
     return log
     # -----------------------------------------------------------------------------------------------------------------------
 # Utils class
