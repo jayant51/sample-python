@@ -7,6 +7,7 @@ import smtplib
 import platform
 import subprocess
 from flask import Flask, jsonify, request
+from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from waitress import serve
 
@@ -79,6 +80,19 @@ def post_msg():
 
 
 def send_email(toaddrs, email_subj, email_msg):
+    #The mail addresses and password
+    sender_address = 'testibmvz@gmail.com'
+    sender_pass = 'password!2E'
+    receiver_address = 'testibmvz@gmail.com'
+
+    mail_content = " Hello,  This is a simple mail. There is only text, no attachments are there The mail is sent using Python SMTP library. Thank You"
+
+
+    #Setup the MIME
+    message = MIMEMultipart()
+    message['From'] = sender_address
+    message['To'] = receiver_address
+
     fromaddr = "some.body@ibm.com"
     #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
 
@@ -88,13 +102,20 @@ def send_email(toaddrs, email_subj, email_msg):
     try:
         log = "creating SMTP"
         #server = smtplib.SMTP( ============, 25)
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = receiver_address
+        message['Subject'] = 'A test mail sent by Python. It has an attachment.'   #The subject line
+
+        message.attach(MIMEText(mail_content, 'plain'))
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()  # enable security
         # login with mail_id and password
         session.login("testibmvz@gmail.com", "password!2E")
         session.set_debuglevel(1)
+        text = message.as_string()
         log = log + "calling send email"
-        session.sendmail(fromaddr, toaddrs, msg.as_string())
+        session.sendmail(sender_address, receiver_address, text)
         log = log + "done send email"
         session.quit()
         log = log + "Successfully sent email"
