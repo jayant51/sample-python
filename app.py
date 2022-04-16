@@ -88,12 +88,15 @@ def send_email(toaddrs, email_subj, email_msg):
     try:
         log = "creating SMTP"
         #server = smtplib.SMTP( ============, 25)
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.set_debuglevel(1)
+        session = smtplib.SMTP('smtp.gmail.com', 587)
+        session.starttls()  # enable security
+        # login with mail_id and password
+        session.login("testvzibm@gmail.com", "PASSWORD!23")
+        session.set_debuglevel(1)
         log = log + "calling send email"
-        server.sendmail(fromaddr, toaddrs, msg.as_string())
+        session.sendmail(fromaddr, toaddrs, msg.as_string())
         log = log + "done send email"
-        server.quit()
+        session.quit()
         log = log + "Successfully sent email"
     except Exception as ex:
         print("Error: unable to send email", ex)
