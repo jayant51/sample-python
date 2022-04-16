@@ -91,7 +91,7 @@ def send_email(toaddrs, email_subj, email_msg):
         session = smtplib.SMTP('smtp.gmail.com', 587)
         session.starttls()  # enable security
         # login with mail_id and password
-        session.login("testvzibm@gmail.com", "PASSWORD!23")
+        session.login("testibmvz@gmail.com", "password!2E")
         session.set_debuglevel(1)
         log = log + "calling send email"
         session.sendmail(fromaddr, toaddrs, msg.as_string())
