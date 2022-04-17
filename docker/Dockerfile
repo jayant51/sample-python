@@ -19,6 +19,7 @@ RUN . venv/bin/activate
 # optimize image caching
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+RUN apt install -y netcat
 
 COPY . .
 
