@@ -30,7 +30,7 @@ def checkAlive():
         response = os.system(command)
 
         if response == 0:
-                retval = "True"
+            retval = "True"
         else:
             retVal = "False"
     except Exception as ex:

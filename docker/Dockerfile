@@ -19,8 +19,8 @@ RUN . venv/bin/activate
 # optimize image caching
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-RUN apt-get -y update && apt-get -y install net-tools
-
+#RUN apt-get -y update && apt-get -y install net-tools
+RUN yum install -y nc
 COPY . .
 
 EXPOSE 8081
