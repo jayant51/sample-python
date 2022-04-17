@@ -19,13 +19,11 @@ def apiCheck():
     return "Message : Remote VM Execution!"
 
 
-@app.route('/isAlive')
-def checkAlive():
+@app.route('/checkVMStatus')
+@app.route('/verifyVMStatus')
+@app.route('/isVMUp')
+def isvmup():
     try:
-        #process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
-        #                           stdout=subprocess.PIPE,
-        #                           stderr=subprocess.PIPE)
-        #stdout, stderr = process.communicate()
         command = "nc -w 5 -z ***REMOVED*** *****"
         response = os.system(command)
         retval = "False"
@@ -53,10 +51,9 @@ def restartVM():
     return "Message : Sent Restart remote server : ***REMOVED***!"
 
 
-@app.route('/checkVMStatus')
-@app.route('/verifyVMStatus')
-@app.route('/isVMUp')
-def isvmup():
+
+@app.route('/ping')
+def ping():
     try:
         timeout = 1
         host = "10.0.0.1"
