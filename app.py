@@ -17,15 +17,15 @@ app = Flask(__name__)
 @app.route('/')
 def apiCheck():
     return "Message : Remote VM Execution!"
-'''
-@app.routc("/isAlive")
+
+
+@app.routc('/isAlive')
 def checkAlive():
     process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
-                     stdout=subprocess.PIPE, 
-                     stderr=subprocess.PIPE)
+                               stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     return stdout | stderr
-'''
 
 
 @app.route('/df')
@@ -86,15 +86,14 @@ def post_msg():
 
 
 def send_email(toaddrs, email_subj, email_msg):
-    #The mail addresses and password
+    # The mail addresses and password
     sender_address = 'testibmvz@gmail.com'
     sender_passcode = '***REMOVED***'
     receiver_address = 'testibmvz@gmail.com'
 
     mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
 
-
-    #Setup the MIME
+    # Setup the MIME
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
@@ -110,7 +109,8 @@ def send_email(toaddrs, email_subj, email_msg):
         message = MIMEMultipart()
         message['From'] = sender_address
         message['To'] = receiver_address
-        message['Subject'] = 'WfPs Test Email to verify Notifications are working !!!.'   #The subject line
+        # The subject line
+        message['Subject'] = 'WfPs Test Email to verify Notifications are working !!!.'
 
         message.attach(MIMEText(mail_content, 'plain'))
         session = smtplib.SMTP('smtp.gmail.com', 587)
@@ -119,7 +119,7 @@ def send_email(toaddrs, email_subj, email_msg):
         session.login(sender_address, sender_passcode)
         session.set_debuglevel(1)
         text = message.as_string()
-        log =  "calling send email"
+        log = "calling send email"
         session.sendmail(sender_address, receiver_address, text)
         log = log + "\n done send email"
         session.quit()
