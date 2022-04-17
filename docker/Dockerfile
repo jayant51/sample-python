@@ -19,7 +19,7 @@ RUN . venv/bin/activate
 # optimize image caching
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-RUN RUN apt-get -y update && apt-get -y install net-tools
+RUN apt-get -y update && apt-get -y install net-tools
 
 COPY . .
 
