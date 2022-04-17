@@ -21,11 +21,14 @@ def apiCheck():
 
 @app.route('/isAlive')
 def checkAlive():
-    process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
-                               stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE)
-    stdout, stderr = process.communicate()
-    return stdout | stderr
+    #process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
+    #                           stdout=subprocess.PIPE,
+    #                           stderr=subprocess.PIPE)
+    #stdout, stderr = process.communicate()
+    command = "nc --wait 5 -z ***REMOVED*** *****"
+    response = os.system(command)
+
+    return response
 
 
 @app.route('/df')
