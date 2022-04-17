@@ -17,7 +17,7 @@ app = Flask(__name__)
 @app.route('/')
 def apiCheck():
     return "Message : Remote VM Execution!"
-
+'''
 @app.routc("/isAlive")
 def checkAlive():
     process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
@@ -25,7 +25,7 @@ def checkAlive():
                      stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     return stdout | stderr
-
+'''
 
 
 @app.route('/df')
