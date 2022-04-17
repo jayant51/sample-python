@@ -19,7 +19,7 @@ def apiCheck():
     return "Message : Remote VM Execution!"
 
 
-@app.routc('/isAlive')
+@app.route('/isAlive')
 def checkAlive():
     process = subprocess.Popen(["nc", "--wait 5", "-z ***REMOVED***", "*****"],
                                stdout=subprocess.PIPE,
