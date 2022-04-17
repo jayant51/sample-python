@@ -26,7 +26,7 @@ def checkAlive():
         #                           stdout=subprocess.PIPE,
         #                           stderr=subprocess.PIPE)
         #stdout, stderr = process.communicate()
-        command = "nc --wait 5 -z ***REMOVED*** *****"
+        command = "nc -w 5 -z ***REMOVED*** *****"
         response = os.system(command)
 
         if response == 0:
