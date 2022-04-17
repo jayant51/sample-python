@@ -28,7 +28,7 @@ def checkAlive():
         #stdout, stderr = process.communicate()
         command = "nc -w 5 -z ***REMOVED*** *****"
         response = os.system(command)
-
+        retval = "False"
         if response == 0:
             retval = "True"
         else:
