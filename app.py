@@ -24,7 +24,7 @@ def apiCheck():
 @app.route('/isVMUp')
 def isvmup():
     try:
-        command = "nc -w 5 -z ***REMOVED*** *****"
+        command = "nc -w 5 -z ***.com port"
         response = os.system(command)
         retval = "False"
         if response == 0:
@@ -44,7 +44,7 @@ def isvmdown():
 
 @app.route('/df')
 def dfExec():
-    return "Message : Sent SSH df -H to remote server : ***REMOVED***!"
+    return "Message : Sent SSH df -H to remote server : *******.com!"
 
 
 @app.route('/restart')
@@ -53,7 +53,7 @@ def restartVM():
     s = sshclnt.get_transport().open_session()
     paramiko.agent.AgentRequestHandler(s)
     sshclnt.exec_command("sudo /sbin/reboot", get_pty=True)
-    return "Message : Sent Restart remote server : ***REMOVED***!"
+    return "Message : Sent Restart remote server : ****.com.com!"
 
 
 
@@ -95,9 +95,9 @@ def post_msg():
 
 def send_email(toaddrs, email_subj, email_msg):
     # The mail addresses and password
-    sender_address = 'testibmvz@gmail.com'
-    sender_passcode = '***REMOVED***'
-    receiver_address = 'testibmvz@gmail.com'
+    sender_address = "****.com'
+    sender_passcode = '*******'
+    receiver_address = '******'
 
     mail_content = " Hello,  This is a simple mail -- WfPs Test Email to verify Notifications are working -- sent using Python SMTP library. Thank You"
 
@@ -106,14 +106,14 @@ def send_email(toaddrs, email_subj, email_msg):
     message['From'] = sender_address
     message['To'] = receiver_address
 
-    fromaddr = "some.body@ibm.com"
-    #toaddrs  = ["Jayant.kulkarni@ibm.com;Jayant.kulkarni@ibm.com"]
+    fromaddr = "somebody@ibm.com"
+    #toaddrs  = ["somebody@ibm.com;somebody@ibm.com"]
 
     msg = MIMEText(email_msg)
     msg['Subject'] = email_subj
 
     try:
-        #server = smtplib.SMTP( ============, 25)
+        #server = smtplib.SMTP('********', **)
         message = MIMEMultipart()
         message['From'] = sender_address
         message['To'] = receiver_address
@@ -121,7 +121,7 @@ def send_email(toaddrs, email_subj, email_msg):
         message['Subject'] = 'WfPs Test Email to verify Notifications are working !!!.'
 
         message.attach(MIMEText(mail_content, 'plain'))
-        session = smtplib.SMTP('smtp.gmail.com', 587)
+        session = smtplib.SMTP('*****', ****)
         session.starttls()  # enable security
         # login with mail_id and password
         session.login(sender_address, sender_passcode)
@@ -147,10 +147,10 @@ class utils():
     def getSSHClient():
         sshclnt = paramiko.SSHClient()
         sshclnt.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        #sshclnt.connect("***REMOVED***", port=****, username=******, password=********)
-        #sshclnt.connect("***REMOVED***", port=****, username=******, password=============)
-        sshclnt.connect("***REMOVED***",
-                        port=*****, username=******, password=============)
+        #sshclnt.connect("******.com", port=******, username="******", password="*****")
+        #sshclnt.connect("*****.com", port=*****, username="***", password="*****")
+        sshclnt.connect("******.com",
+                        port=****, username="****", password="******")
         return sshclnt
 
     def execCommand(command):
